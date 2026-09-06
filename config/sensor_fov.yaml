@@ -1,0 +1,31 @@
+sensor_fov_visualizer:
+  ros__parameters:
+    # 示例内参。部署前请替换为相机标定结果（像素单位）。
+    camera.enabled: true
+    camera.frame_id: camera_optical_frame
+    camera.width: 1440
+    camera.height: 1080
+    camera.fx: 9955.0
+    camera.fy: 9940.0
+    camera.cx: 720.0
+    camera.cy: 540.0
+    camera.near_m: 0.01
+    camera.far_m: 26.0
+    camera.line_color: [0.10, 0.85, 1.00, 1.00]
+
+    # 示例雷达参数，不代表设备额定规格。请按实际型号和使用距离修改。
+    # circular 使用 circular_fov_deg；rectangular 使用 horizontal/vertical_fov_deg。
+    lidar.enabled: true
+    lidar.frame_id: livox_frame
+    lidar.shape: circular
+    lidar.circular_fov_deg: 70.4
+    lidar.horizontal_fov_deg: 70.4
+    lidar.vertical_fov_deg: 70.4
+    lidar.min_range_m: 0.01
+    lidar.max_range_m: 26.0
+    lidar.ring_segments: 64
+    lidar.line_color: [1.00, 0.75, 0.05, 1.00]
+
+    # Marker.scale: LINE_LIST仅使用x；ARROW使用x/y/z表示杆径、头部直径、头部长度。
+    marker.scale: [0.005, 0.15, 0.24]
+    publish_period_s: 1.0

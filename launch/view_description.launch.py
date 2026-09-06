@@ -1,10 +1,11 @@
 from launch import LaunchDescription
-from launch.substitutions import Command, PathJoinSubstitution
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import ParameterValue
 from launch_ros.substitutions import FindPackageShare
-from launch.actions import IncludeLaunchDescription
-from launch.launch_description_sources import PythonLaunchDescriptionSource
+
 
 def generate_launch_description():
     description_share = FindPackageShare("dart_description")
@@ -23,6 +24,10 @@ def generate_launch_description():
             "rviz",
             "description.rviz",
         ]
+    )
+
+    sensor_fov_config = PathJoinSubstitution(
+        [description_share, "config", "sensor_fov.yaml"]
     )
 
     robot_description = ParameterValue(
@@ -46,12 +51,24 @@ def generate_launch_description():
 
     return LaunchDescription(
         [
+            DeclareLaunchArgument(
+                "sensor_fov_config",
+                default_value=sensor_fov_config,
+                description="Camera and lidar field-of-view visualization parameters",
+            ),
             description_launch,
             Node(
                 package="joint_state_publisher_gui",
                 executable="joint_state_publisher_gui",
                 output="screen",
                 parameters=[description_parameter],
+            ),
+            Node(
+                package="dart_description",
+                executable="sensor_fov_visualizer.py",
+                name="sensor_fov_visualizer",
+                output="screen",
+                parameters=[LaunchConfiguration("sensor_fov_config")],
             ),
             Node(
                 package="rviz2",

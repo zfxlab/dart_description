@@ -32,7 +32,7 @@
     <!-- 薄板顶面与 field_link 的 z=0 平面重合。 -->
     <visual>
       <geometry>
-        <mesh filename="package://dart_description/meshes/field_link.stl" scale="1 1 1"/>>
+        <mesh filename="package://dart_description/meshes/field_link.stl" scale="1 1 1"/>
       </geometry>
       <material name="field_material"/>
     </visual>

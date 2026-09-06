@@ -189,6 +189,19 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Topic:
+        Depth: 5
+        Durability Policy: Transient Local
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /sensor_fov_markers
+      Name: Sensor FOV
+      Namespaces:
+        camera: true
+        lidar: true
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 144; 144; 144
@@ -235,25 +248,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 0.3629251718521118
+      Distance: 35
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 7.772459506988525
-        Y: 25.56374168395996
-        Z: 0.9352778792381287
+        X: 5
+        Y: 14
+        Z: 1
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.3297968804836273
+      Pitch: 0.85
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 6.098592281341553
+      Yaw: 4
     Saved: ~
 Window Geometry:
   Displays:
