@@ -45,7 +45,7 @@
     <parent link="field_link" />
     <child link="base_nominal_link" />
 
-    <origin xyz="7.5 25.593 0.0" rpy="0.0 0.0 ${pi}" />
+    <origin xyz="7.5 25.593 0.4" rpy="0.0 0.0 ${pi}" />
   </joint>
 
   <!-- 现场基地实际坐标系。偏差为零时与理论坐标系重合。 -->
@@ -238,7 +238,7 @@
     <parent link="launcher_frame" />
     <child link="lidar_mount_link" />
 
-    <origin xyz="0.35 0.0 0.42" rpy="0.0 0.0 0.0" />
+    <origin xyz="0.35 0.0 0.88" rpy="0.0 0.0 0.0" />
   </joint>
 
   <!-- 雷达测量坐标系 -->
