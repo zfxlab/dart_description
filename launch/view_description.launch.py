@@ -30,6 +30,8 @@ def generate_launch_description():
         [description_share, "config", "sensor_fov.yaml"]
     )
 
+    site_file = LaunchConfiguration("site_file")
+
     robot_description = ParameterValue(
         Command(["xacro ", xacro_file]),
         value_type=str,
@@ -41,12 +43,13 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             PathJoinSubstitution(
                 [
-                    FindPackageShare("dart_description"),
+                    description_share,
                     "launch",
                     "description.launch.py",
                 ]
             )
-        )
+        ),
+        launch_arguments={"site_file": site_file}.items(),
     )
 
     return LaunchDescription(
@@ -55,6 +58,12 @@ def generate_launch_description():
                 "sensor_fov_config",
                 default_value=sensor_fov_config,
                 description="Camera and lidar field-of-view visualization parameters",
+            ),
+            DeclareLaunchArgument(
+                "site_file",
+                default_value=PathJoinSubstitution(
+                    [description_share, "config", "site", "default.yaml"]
+                ),
             ),
             description_launch,
             Node(
