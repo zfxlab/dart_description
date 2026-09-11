@@ -170,20 +170,10 @@
     <origin xyz="0.0 0.0 0.091" rpy="0.0 0.0 0.0" />
     <axis xyz="0 0 1" />
 
-    <limit lower="${-pi / 2}"
-      upper="${pi / 2}"
+    <limit lower="${-pi / 9}"
+      upper="0"
       effort="20"
       velocity="${10 * pi / 3}" />
-  </joint>
-
-  <!-- 飞镖释放坐标 -->
-  <link name="dart_release_frame" />
-
-  <joint name="launcher_to_dart_release" type="fixed">
-    <parent link="launcher_frame" />
-    <child link="dart_release_frame" />
-
-    <origin xyz="0.112 0.0 0.48" rpy="0.0 0.0 0.0" />
   </joint>
 
   <!-- 相机机械坐标 -->
@@ -208,7 +198,7 @@
     <parent link="launcher_frame" />
     <child link="camera_mount_link" />
 
-    <origin xyz="0.1 0.0 0.8" rpy="0.0 0.0 0.0" />
+    <origin xyz="0.1799 0.0 0.3164" rpy="0.0 0.0 ${-pi / 90}" />
   </joint>
 
   <!-- 相机光学坐标 -->
@@ -235,10 +225,10 @@
   </link>
 
   <joint name="launcher_to_lidar_mount" type="fixed">
-    <parent link="launcher_frame" />
+    <parent link="dart_base_link" />
     <child link="lidar_mount_link" />
 
-    <origin xyz="0.35 0.0 0.88" rpy="0.0 0.0 0.0" />
+    <origin xyz="0.3787 0.1718 0.484" rpy="0.0 0.0 ${-78 * pi / 1800}" />
   </joint>
 
   <!-- 雷达测量坐标系 -->
