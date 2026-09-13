@@ -45,7 +45,7 @@
     <parent link="field_link" />
     <child link="base_nominal_link" />
 
-    <origin xyz="7.5 25.593 0.4" rpy="0.0 0.0 ${pi}" />
+    <origin xyz="7.5 25.593 0.307" rpy="0.0 0.0 ${pi}" />
   </joint>
 
   <!-- 现场基地实际坐标系。偏差为零时与理论坐标系重合。 -->
@@ -137,7 +137,7 @@
   <!-- 发射机构旋转轴与飞镖系统放置平面交点 -->
   <link name="dart_base_link">
     <visual>
-      <origin xyz="0.0 0.0 0.091" rpy="0.0 0.0 0.0" />
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh filename="package://dart_description/meshes/dart_base_link.stl" scale="1 1 1" />
       </geometry>
@@ -228,7 +228,7 @@
     <parent link="dart_base_link" />
     <child link="lidar_mount_link" />
 
-    <origin xyz="0.3787 0.1718 0.484" rpy="0.0 0.0 ${-78 * pi / 1800}" />
+    <origin xyz="0.3787 0.1718 0.393" rpy="0.0 0.0 ${-78 * pi / 1800}" />
   </joint>
 
   <!-- 雷达测量坐标系 -->
