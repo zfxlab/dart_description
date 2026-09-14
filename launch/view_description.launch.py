@@ -55,6 +55,12 @@ def generate_launch_description():
     return LaunchDescription(
         [
             DeclareLaunchArgument(
+                "environment_config",
+                default_value=PathJoinSubstitution(
+                    [description_share, "config", "environment.yaml"]
+                ),
+            ),
+            DeclareLaunchArgument(
                 "sensor_fov_config",
                 default_value=sensor_fov_config,
                 description="Camera and lidar field-of-view visualization parameters",
@@ -78,6 +84,15 @@ def generate_launch_description():
                 name="sensor_fov_visualizer",
                 output="screen",
                 parameters=[LaunchConfiguration("sensor_fov_config")],
+            ),
+            Node(
+                package="dart_description",
+                executable="environment_visualizer.py",
+                name="environment_visualizer",
+                output="screen",
+                parameters=[
+                    LaunchConfiguration("environment_config"),
+                ],
             ),
             Node(
                 package="rviz2",
