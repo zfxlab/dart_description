@@ -1,11 +1,5 @@
 environment_visualizer:
   ros__parameters:
-    # 舱门 ROI，坐标在雷达测量坐标系中表达。
-    door_roi.enabled: true
-    door_roi.frame_id: livox_frame
-    door_roi.lower_m: [0.1, -0.5, -0.3]
-    door_roi.upper_m: [0.3, 0.1, 0.4]
-
     # 基地模型在 base_link 中的轴对齐包围范围。
     base_roi.enabled: true
     base_roi.frame_id: base_link

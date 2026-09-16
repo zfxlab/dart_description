@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Draw the configured door/base ROIs and the dart base reference ground."""
+"""Draw the configured base ROI and the dart base reference ground."""
 import math
 
 import rclpy
@@ -14,10 +14,6 @@ class EnvironmentVisualizer(Node):
     def __init__(self):
         super().__init__("environment_visualizer")
         defaults = {
-            "door_roi.enabled": True,
-            "door_roi.frame_id": "livox_frame",
-            "door_roi.lower_m": [0.1, -0.5, -0.3],
-            "door_roi.upper_m": [0.3, 0.1, 0.4],
             "base_roi.enabled": True,
             "base_roi.frame_id": "base_link",
             "base_roi.lower_m": [-0.68, -0.40, 0.0],
@@ -32,12 +28,12 @@ class EnvironmentVisualizer(Node):
         }
         for name, value in defaults.items():
             self.declare_parameter(name, value)
-        for prefix in ("door_roi", "base_roi"):
+        for prefix in ("base_roi",):
             lower = self.get_parameter(f"{prefix}.lower_m").value
             upper = self.get_parameter(f"{prefix}.upper_m").value
             if (len(lower) != 3 or len(upper) != 3
                     or any(not math.isfinite(v) for v in (*lower, *upper))
-                    or any(a >= b for a, b in zip(lower, upper))):
+                    or any(a >= b for a, b in zip(lower, upper, strict=True))):
                 raise ValueError(f"{prefix} bounds must be finite three-element vectors with lower < upper")
             if not self.get_parameter(f"{prefix}.frame_id").value:
                 raise ValueError(f"{prefix}.frame_id must not be empty")
@@ -59,8 +55,7 @@ class EnvironmentVisualizer(Node):
         self.timer = self.create_timer(1.0, self.publish)
         self.publish()
         self.get_logger().info(
-            "Publishing door/base ROIs and ground z=%.3f m"
-            % self.get_parameter("ground.z_m").value
+            f"Publishing base ROI and ground z={self.get_parameter('ground.z_m').value:.3f} m"
         )
 
     @staticmethod
@@ -83,9 +78,9 @@ class EnvironmentVisualizer(Node):
         lower = self.get_parameter(f"{namespace}.lower_m").value
         upper = self.get_parameter(f"{namespace}.upper_m").value
         box = self.marker(namespace, 0, Marker.CUBE, frame, (*color, 0.15))
-        center = [(a + b) / 2 for a, b in zip(lower, upper)]
+        center = [(a + b) / 2 for a, b in zip(lower, upper, strict=True)]
         box.pose.position = self.point(*center)
-        box.scale.x, box.scale.y, box.scale.z = [b - a for a, b in zip(lower, upper)]
+        box.scale.x, box.scale.y, box.scale.z = [b - a for a, b in zip(lower, upper, strict=True)]
         edges = self.marker(namespace, 1, Marker.LINE_LIST, frame, (*color, 1.0))
         edges.scale.x = 0.005
         corners = [self.point(*[upper[axis] if index & (1 << axis) else lower[axis] for axis in range(3)]) for index in range(8)]
@@ -98,8 +93,6 @@ class EnvironmentVisualizer(Node):
 
     def make_markers(self):
         markers = []
-        if self.get_parameter("door_roi.enabled").value:
-            markers.extend(self.roi_markers("door_roi", (1.0, 0.25, 0.15)))
         if self.get_parameter("base_roi.enabled").value:
             markers.extend(self.roi_markers("base_roi", (0.15, 0.45, 1.0)))
         if self.get_parameter("ground.enabled").value:

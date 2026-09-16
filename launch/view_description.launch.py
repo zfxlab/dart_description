@@ -1,22 +1,13 @@
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitution
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
-from launch_ros.parameter_descriptions import ParameterValue
 from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
     description_share = FindPackageShare("dart_description")
-
-    xacro_file = PathJoinSubstitution(
-        [
-            description_share,
-            "urdf",
-            "dart_system.urdf.xacro",
-        ]
-    )
 
     rviz_config = PathJoinSubstitution(
         [
@@ -31,13 +22,6 @@ def generate_launch_description():
     )
 
     site_file = LaunchConfiguration("site_file")
-
-    robot_description = ParameterValue(
-        Command(["xacro ", xacro_file]),
-        value_type=str,
-    )
-
-    description_parameter = {"robot_description": robot_description}
 
     description_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -63,7 +47,7 @@ def generate_launch_description():
             DeclareLaunchArgument(
                 "sensor_fov_config",
                 default_value=sensor_fov_config,
-                description="Camera and lidar field-of-view visualization parameters",
+                description="Independent left/right camera field-of-view visualization parameters",
             ),
             DeclareLaunchArgument(
                 "site_file",
@@ -76,7 +60,7 @@ def generate_launch_description():
                 package="joint_state_publisher_gui",
                 executable="joint_state_publisher_gui",
                 output="screen",
-                parameters=[description_parameter],
+                # Read the same /robot_description as RViz; do not evaluate a second xacro.
             ),
             Node(
                 package="dart_description",

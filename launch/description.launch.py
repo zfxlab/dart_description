@@ -74,12 +74,13 @@ def _launch_setup(context):
         [FindPackageShare("dart_description"), "urdf", "dart_system.urdf.xacro"]
     )
     xacro_command = ["xacro ", xacro_file]
-    for name, value in zip(BASE_OFFSET_NAMES, offsets):
+    for name, value in zip(BASE_OFFSET_NAMES, offsets, strict=True):
         xacro_command.extend([" ", name, ":=", repr(value)])
 
     get_logger("dart_description").info(
-        "Loaded %s site from %s: xyz=[%.6f, %.6f, %.6f] m, "
-        "rpy=[%.6f, %.6f, %.6f] rad" % (color, site_path, *offsets)
+        f"Loaded {color} site from {site_path}: "
+        f"xyz=[{offsets[0]:.6f}, {offsets[1]:.6f}, {offsets[2]:.6f}] m, "
+        f"rpy=[{offsets[3]:.6f}, {offsets[4]:.6f}, {offsets[5]:.6f}] rad"
     )
 
     robot_description = ParameterValue(Command(xacro_command), value_type=str)

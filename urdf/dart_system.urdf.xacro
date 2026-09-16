@@ -94,7 +94,7 @@
     <limit lower="0.0" upper="0.56" effort="1.0" velocity="1.0" />
   </joint>
 
-  <!-- 发光面直径约 55 mm，中心偏移与当前雷达定位配置保持一致。 -->
+  <!-- 发光面直径约 55 mm，中心偏移沿用当前机构测量值。 -->
   <link name="green_light_link">
     <visual>
       <origin xyz="0.0 -0.004 0.0" rpy="${pi / 2} 0.0 0.0"/>
@@ -113,7 +113,7 @@
     <origin xyz="0.0 0.1222 0.02363" rpy="${pi / 12} 0.0 0.0" />
   </joint>
 
-  <!-- 装甲板模块，中心偏移与当前雷达定位配置保持一致。 -->
+  <!-- 装甲板模块，中心偏移沿用当前机构测量值。 -->
   <link name="armor_link"/>
 
   <joint name="dart_detection_module_to_armor" type="fixed">
@@ -176,69 +176,75 @@
       velocity="${10 * pi / 3}" />
   </joint>
 
-  <!-- 相机机械坐标 -->
-  <!-- 相机方形安装底面中心 -->
-  <link name="camera_mount_link">
+  <!-- 双相机固定板中心。左右相机的公共俯仰角在此处统一定义。 -->
+  <link name="stereo_camera_center_link" />
+
+  <joint name="launcher_to_stereo_camera_center" type="fixed">
+    <parent link="launcher_frame" />
+    <child link="stereo_camera_center_link" />
+    <origin xyz="0.1799 0.0 0.3164" rpy="0.0 ${-pi / 90} 0.0" />
+  </joint>
+
+  <!-- 左相机：相对双相机固定板中心向左 -->
+  <link name="left_camera_mount_link">
     <visual>
       <geometry>
         <mesh filename="package://dart_description/meshes/camera_mount_link_camera.stl" scale="1 1 1" />
       </geometry>
-      <material name="camera"/>
+      <material name="camera" />
     </visual>
     <visual>
       <origin xyz="0.012 0.0 0.015" rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh filename="package://dart_description/meshes/camera_mount_link_lens.stl" scale="1 1 1" />
       </geometry>
-      <material name="camera"/>
+      <material name="camera" />
     </visual>
   </link>
 
-  <joint name="launcher_to_camera_mount" type="fixed">
-    <parent link="launcher_frame" />
-    <child link="camera_mount_link" />
-
-    <origin xyz="0.1799 0.0 0.3164" rpy="0.0 ${-pi / 90} 0.0" />
+  <joint name="stereo_camera_center_to_left_camera_mount" type="fixed">
+    <parent link="stereo_camera_center_link" />
+    <child link="left_camera_mount_link" />
+    <origin xyz="0.0 0.15 0.0" rpy="0.0 0.0 0.0" />
   </joint>
 
-  <!-- 相机光学坐标 -->
-  <link name="camera_optical_frame" />
-
-  <joint name="camera_mount_to_optical" type="fixed">
-    <parent link="camera_mount_link" />
-    <child link="camera_optical_frame" />
-
-    <!-- camera_mount: x前 y左 z上
-         optical:      z前 x右 y下 -->
+  <link name="left_camera_optical_frame" />
+  <joint name="left_camera_mount_to_optical" type="fixed">
+    <parent link="left_camera_mount_link" />
+    <child link="left_camera_optical_frame" />
+    <!-- mount: x前 y左 z上；optical: z前 x右 y下。 -->
     <origin xyz="0.04 0.0 0.015" rpy="${-pi / 2} 0.0 ${-pi / 2}" />
   </joint>
 
-  <!-- 雷达机械坐标
-       雷达安装底面中心 -->
-  <link name="lidar_mount_link">
+  <!-- 右相机：相对双相机固定板中心向右 -->
+  <link name="right_camera_mount_link">
     <visual>
       <geometry>
-        <mesh filename="package://dart_description/meshes/lidar_mount_link.stl" scale="1 1 1" />
+        <mesh filename="package://dart_description/meshes/camera_mount_link_camera.stl" scale="1 1 1" />
       </geometry>
-      <material name="aluminum"/>
+      <material name="camera" />
+    </visual>
+    <visual>
+      <origin xyz="0.012 0.0 0.015" rpy="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/camera_mount_link_lens.stl" scale="1 1 1" />
+      </geometry>
+      <material name="camera" />
     </visual>
   </link>
 
-  <joint name="launcher_to_lidar_mount" type="fixed">
-    <parent link="dart_base_link" />
-    <child link="lidar_mount_link" />
-
-    <origin xyz="0.3787 0.1718 0.393" rpy="0.0 0.0 ${-78 * pi / 1800}" />
+  <joint name="stereo_camera_center_to_right_camera_mount" type="fixed">
+    <parent link="stereo_camera_center_link" />
+    <child link="right_camera_mount_link" />
+    <origin xyz="0.0 -0.15 0.0" rpy="0.0 0.0 0.0" />
   </joint>
 
-  <!-- 雷达测量坐标系 -->
-  <link name="livox_frame" />
-
-  <joint name="lidar_mount_to_livox" type="fixed">
-    <parent link="lidar_mount_link" />
-    <child link="livox_frame" />
-
-    <origin xyz="0.0323 0.0 0.0324" rpy="0.0 0.0 0.0" />
+  <link name="right_camera_optical_frame" />
+  <joint name="right_camera_mount_to_optical" type="fixed">
+    <parent link="right_camera_mount_link" />
+    <child link="right_camera_optical_frame" />
+    <!-- mount: x前 y左 z上；optical: z前 x右 y下。 -->
+    <origin xyz="0.04 0.0 0.015" rpy="${-pi / 2} 0.0 ${-pi / 2}" />
   </joint>
 
 </robot>
