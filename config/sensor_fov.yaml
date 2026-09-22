@@ -1,13 +1,13 @@
 sensor_fov_visualizer:
   ros__parameters:
-    # 左右相机均采用 50 mm 镜头；像素内参来自 2BDFA1701234.yaml 的标定结果。
+    # 左右相机均采用 50 mm 镜头, 像元尺寸为 3.45x3.45 微米；
     # 理想针孔模型，未模拟畸变、遮挡或校正后裁剪；near/far 为光轴深度截断。
     left_camera.enabled: true
     left_camera.frame_id: left_camera_optical_frame
     left_camera.width: 1440
     left_camera.height: 1080
-    left_camera.fx: 15061.88175646052
-    left_camera.fy: 15061.88175646052
+    left_camera.fx: 14521.797217623654
+    left_camera.fy: 14521.797217623654
     left_camera.cx: 719.5
     left_camera.cy: 539.5
     left_camera.near_m: 0.01
@@ -19,8 +19,8 @@ sensor_fov_visualizer:
     right_camera.frame_id: right_camera_optical_frame
     right_camera.width: 1440
     right_camera.height: 1080
-    right_camera.fx: 15061.88175646052
-    right_camera.fy: 15061.88175646052
+    right_camera.fx: 14521.797217623654
+    right_camera.fy: 14521.797217623654
     right_camera.cx: 719.5
     right_camera.cy: 539.5
     right_camera.near_m: 0.01
