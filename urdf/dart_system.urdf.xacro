@@ -241,9 +241,9 @@
   </link>
 
   <joint name="stereo_camera_center_to_right_camera_mount" type="fixed">
-    <parent link="stereo_camera_center_link" />
+    <parent link="left_camera_mount_link" />
     <child link="right_camera_mount_link" />
-    <origin xyz="-0.015 -0.15 0.0" rpy="0.0 0.0 0.0" />
+    <origin xyz="0.0 -0.3 0.0" rpy="0.0 0.0 0.0" />
   </joint>
 
   <link name="right_camera_optical_frame" />
