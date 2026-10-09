@@ -115,7 +115,7 @@ class Geometry:
             if distance < 1e-9:
                 raise ValueError("目标与镖架水平位置重合, yaw 未定义")
             result[name + "_distance_m"] = distance
-            result[name + "_yaw_rad"] = -math.atan2(y, x)
+            result[name + "_yaw_rad"] = math.atan2(y, x)
         result["yaw_delta_rad"] = (
             result["armor_yaw_rad"] - result["green_yaw_rad"] + math.pi
         ) % (2 * math.pi) - math.pi
@@ -132,7 +132,7 @@ class Geometry:
                 )
             if name != "module":
                 lines.append(f"{name}_distance(s) = hypot({name}_x(s), {name}_y(s)) [m]")
-                lines.append(f"{name}_yaw(s) = -atan2({name}_y(s), {name}_x(s)) [rad]")
+                lines.append(f"{name}_yaw(s) = atan2({name}_y(s), {name}_x(s)) [rad]")
         lines.extend(
             [
                 "distance_delta(s) = armor_distance(s) - green_distance(s) [m]",
