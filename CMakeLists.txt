@@ -29,6 +29,7 @@ install(
 
 install(
   PROGRAMS scripts/sensor_fov_visualizer.py scripts/environment_visualizer.py
+           scripts/target_geometry.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
