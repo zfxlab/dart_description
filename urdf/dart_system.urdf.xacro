@@ -66,14 +66,14 @@
       rpy="$(arg base_offset_roll) $(arg base_offset_pitch) $(arg base_offset_yaw)" />
   </joint>
 
-  <!-- 滑轨零位，默认在基地左侧 -->
+  <!-- 滑轨零位位于行程中心 -->
   <link name="rail_origin_link" />
 
   <joint name="base_to_rail_origin" type="fixed">
     <parent link="base_link" />
     <child link="rail_origin_link" />
 
-    <origin xyz="-0.28 -0.03193 0.91" rpy="0.0 0.0 0.0" />
+    <origin xyz="0.0 -0.03193 0.91" rpy="0.0 0.0 0.0" />
   </joint>
 
   <!-- 飞镖检测模块运动位置 -->
@@ -91,7 +91,7 @@
     <child link="dart_detection_module_link" />
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
     <axis xyz="1 0 0" />
-    <limit lower="0.0" upper="0.56" effort="1.0" velocity="1.0" />
+    <limit lower="-0.28" upper="0.28" effort="1.0" velocity="1.0" />
   </joint>
 
   <!-- 发光面直径约 55 mm，中心偏移沿用当前机构测量值。 -->
