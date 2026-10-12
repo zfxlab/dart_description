@@ -16,8 +16,8 @@ class EnvironmentVisualizer(Node):
         defaults = {
             "base_roi.enabled": True,
             "base_roi.frame_id": "base_link",
-            "base_roi.lower_m": [-0.68, -0.40, 0.0],
-            "base_roi.upper_m": [0.60, 0.50, 0.90],
+            "base_roi.lower_m": [-0.40, -0.61, 0.0],
+            "base_roi.upper_m": [0.50, 0.69, 0.90],
             "ground.enabled": True,
             "ground.frame_id": "field_link",
             "ground.z_m": 0.205,

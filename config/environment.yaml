@@ -3,8 +3,8 @@ environment_visualizer:
     # 基地模型在 base_link 中的轴对齐包围范围。
     base_roi.enabled: true
     base_roi.frame_id: base_link
-    base_roi.lower_m: [-0.68, -0.40, 0.0]
-    base_roi.upper_m: [0.60, 0.50, 0.90]
+    base_roi.lower_m: [-0.40, -0.61, 0.0]
+    base_roi.upper_m: [0.50, 0.69, 0.90]
 
     ground.enabled: true
     ground.frame_id: field_link

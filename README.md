@@ -9,9 +9,9 @@
 - 通过 `robot_state_publisher` 发布整套系统的 `/robot_description`、`/tf` 和 `/tf_static`。
 - 支持红、蓝方各自的基地现场位姿偏移，长度使用米，角度使用弧度。
 - 描述飞镖检测模块滑轨，中心为零位，运动范围为 `[-0.28, 0.28] m`。
-- 描述发射机构 yaw 关节、双目相机安装位姿及 optical frame。
+- 描述发射机构 yaw 关节、飞镖离轨点、双目相机安装位姿及 optical frame。
 - 在 RViz 中显示机器人模型、TF、相机视场、基地 ROI 和场地网格。
-- 从 URDF 自动推导检测模块、绿灯和装甲板相对镖架的几何函数，并导出 CSV。
+- 提供从 URDF 推导检测模块、绿灯、装甲板上表面和发射方向的可调用几何 API。
 
 ## 目录结构
 
@@ -29,7 +29,7 @@ dart_description/
 ├── scripts/
 │   ├── environment_visualizer.py
 │   ├── sensor_fov_visualizer.py
-│   └── target_geometry.py     # URDF 几何计算与 CSV 导出
+│   └── target_geometry/       # 可安装的 URDF 几何 Python 包
 └── urdf/dart_system.urdf.xacro
 ```
 
@@ -48,6 +48,7 @@ field_link
 └── dart_pedestal_link
     └── dart_base_link
         └── launcher_frame
+            ├── dart_release_link
             └── stereo_camera_center_link
                 ├── left_camera_mount_link
                 │   └── left_camera_optical_frame
@@ -62,6 +63,10 @@ field_link
 - 除 `field_link` 和相机 optical frame 外，其余机械坐标系统一采用右手坐标系：`x` 向前、`y` 向左、`z` 向上。
 - 统一的轴定义不表示这些坐标系在空间中相互平行；固定安装姿态、目标倾角以及可动关节的旋转均由 URDF 中对应 joint 的 `origin rpy` 和关节位置描述。
 - 所有长度单位为米，URDF 中所有角度单位为弧度。
+- `dart_release_link` 的原点为飞镖离轨参考点，`+x` 为初始发射方向；其位姿由 xacro
+  参数定义，当前固定发射仰角为 `32 deg`。
+- `armor_link` 的原点为装甲板上表面中心，local `y/z` 张成上表面，local `+x` 为
+  上表面法向；板体沿 local `-x` 延伸。
 
 可动关节：
 
@@ -204,50 +209,25 @@ blue:
 
 两个 MarkerArray 话题均采用 transient-local durability，新启动的 RViz 订阅者也能收到最近一次数据。
 
-## URDF 目标几何计算工具
+## URDF 目标几何 API
 
-`target_geometry.py` 从 xacro 读取关节树、滑轨方向与限位，计算检测模块、绿灯和装甲板中心在 `dart_base_link` XY 平面内的位置、距离和 yaw，并对完整滑轨行程采样生成 CSV。
+`target_geometry` Python 包提供数值函数，不再打印字符型公式或直接生成分析 CSV。它从 xacro
+读取完整关节树，并支持同时设置滑轨位置和 launcher yaw。主要接口包括：
 
-构建后运行：
+```python
+from target_geometry import Geometry
 
-```bash
-ros2 run dart_description target_geometry.py
+geometry = Geometry()
+center = geometry.armor_position(slide=0.0)
+surface = geometry.armor_surface(slide=0.0)
+release = geometry.release_position(launcher_yaw=-0.13)
+direction = geometry.launch_direction(launcher_yaw=-0.13)
+local_hit = surface.coordinates(hit_point)
 ```
 
-也可以直接从源码运行：
-
-```bash
-python3 scripts/target_geometry.py
-```
-
-参数：
-
-| 参数 | 默认值 | 说明 |
-| --- | --- | --- |
-| `--urdf` | 包内 `dart_system.urdf.xacro` | 指定其他 URDF/xacro 文件 |
-| `--samples` | `561` | 包含两个端点的全行程采样数 |
-| `--output` | `target_geometry.csv` | CSV 输出路径 |
-
-当前行程为 `0.56 m`，默认 561 个点对应 `1 mm` 间隔。CSV 字段为：
-
-```text
-slide_m
-module_x_m, module_y_m
-green_x_m, green_y_m, green_distance_m, green_yaw_rad
-armor_x_m, armor_y_m, armor_distance_m, armor_yaw_rad
-yaw_delta_rad, distance_delta_m
-```
-
-计算约定：
-
-- 位置和距离单位为米，yaw 单位为弧度。
-- `yaw = atan2(y, x)`，正值向左，符合 x 前、y 左、z 上坐标系的右手定则。
-- `yaw_delta_rad = armor_yaw_rad - green_yaw_rad`，归一化到 `[-π, π)`。
-- `distance_delta_m = armor_distance_m - green_distance_m`。
-- 距离只取 `dart_base_link` 的 XY 平面距离，不包含高度差。
-- CSV 会根据 URDF 当前限位生成；修改滑轨零位或限位后应重新生成旧 CSV。
-
-工具运行时还会在终端打印各位置、距离和 yaw 关于滑轨位置 `s` 的解析函数。
+所有返回位置默认在 `dart_base_link` 中表达，也可通过 `reference` 参数选择其他坐标系。
+`Surface` 同时给出上表面中心、法向、表面 `u/v` 方向和有限尺寸；其中 `u` 对应
+`armor_link` local `y`，`v` 对应 local `z`。
 
 ## License
 

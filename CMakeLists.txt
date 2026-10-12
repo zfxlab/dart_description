@@ -15,6 +15,7 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_python REQUIRED)
 # uncomment the following section in order to fill in further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
@@ -29,8 +30,12 @@ install(
 
 install(
   PROGRAMS scripts/sensor_fov_visualizer.py scripts/environment_visualizer.py
-           scripts/target_geometry.py
   DESTINATION lib/${PROJECT_NAME}
+)
+
+ament_python_install_package(
+  target_geometry
+  PACKAGE_DIR scripts/target_geometry
 )
 
 ament_package()
