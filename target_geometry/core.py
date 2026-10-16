@@ -8,7 +8,6 @@ import numpy as np
 import xacro
 
 
-SLIDE_JOINT = "dart_detection_module_slide_joint"
 YAW_JOINT = "launcher_yaw_joint"
 
 
@@ -37,15 +36,18 @@ class Surface:
     def contains(self, point, normal_tolerance=1e-9):
         """Return whether a point lies on the finite surface within the given tolerance."""
         u, v, normal = self.coordinates(point)
+        # Allow only floating-point roundoff at inclusive rectangle edges;
+        # this is not a physical extension of the modeled armor area.
+        edge_epsilon = 32 * np.finfo(float).eps * max(1.0, np.linalg.norm(self.center))
         return bool(
-            abs(u) <= self.size_u / 2
-            and abs(v) <= self.size_v / 2
+            abs(u) <= self.size_u / 2 + edge_epsilon
+            and abs(v) <= self.size_v / 2 + edge_epsilon
             and abs(normal) <= normal_tolerance
         )
 
 
 def default_urdf():
-    source = Path(__file__).resolve().parents[2] / "urdf/dart_system.urdf.xacro"
+    source = Path(__file__).resolve().parents[1] / "urdf/dart_system.urdf.xacro"
     if source.is_file():
         return source
     from ament_index_python.packages import get_package_share_directory
@@ -99,9 +101,13 @@ def _numbers(element, attribute, default):
 class Geometry:
     """Evaluate link poses and target geometry without duplicating URDF constants."""
 
-    def __init__(self, path=None):
+    def __init__(self, path=None, team="red"):
+        if team not in ("red", "blue"):
+            raise ValueError("team 必须为 red 或 blue")
+        self.team = team
+        self.slide_joint = ("blue" if team == "red" else "red") + "_base_target_slide_joint"
         self.path = Path(path if path is not None else default_urdf()).resolve()
-        self.document = xacro.process_file(str(self.path))
+        self.document = xacro.process_file(str(self.path), mappings={"team": team})
         self.joints = {}
         for joint in self.document.getElementsByTagName("joint"):
 
@@ -129,9 +135,9 @@ class Geometry:
             }
 
         self._joints_by_name = {joint["name"]: joint for joint in self.joints.values()}
-        self._require_joint(SLIDE_JOINT, "prismatic")
+        self._require_joint(self.slide_joint, "prismatic")
         self._require_joint(YAW_JOINT, "revolute")
-        self.lower, self.upper = self.joint_limits(SLIDE_JOINT)
+        self.lower, self.upper = self.joint_limits(self.slide_joint)
         if not all(math.isfinite(value) for value in (self.lower, self.upper)):
             raise ValueError("滑轨限位必须为有限数值")
         if self.lower > self.upper:
@@ -149,7 +155,9 @@ class Geometry:
         for link in self.document.getElementsByTagName("link"):
             if link.getAttribute("name") != link_name:
                 continue
-            visuals = link.getElementsByTagName("visual")
+            # The colored CAD mesh owns the visual surface. The semantic armor
+            # frame carries a collision box solely for the geometry API.
+            visuals = link.getElementsByTagName("collision") or link.getElementsByTagName("visual")
             if not visuals:
                 break
             boxes = visuals[0].getElementsByTagName("box")
@@ -158,7 +166,7 @@ class Geometry:
                 if size.shape == (3,) and np.all(np.isfinite(size)) and np.all(size > 0.0):
                     return size
             break
-        raise ValueError(f"坐标系 {link_name} 必须包含有效的 box visual")
+        raise ValueError(f"坐标系 {link_name} 必须包含有效的 box collision 或 visual")
 
     def joint_limits(self, joint_name):
         joint = self._joints_by_name.get(joint_name)
@@ -178,6 +186,10 @@ class Geometry:
             if position != 0.0:
                 raise ValueError(f"固定关节 {joint['name']} 的位置必须为零")
             return np.eye(4)
+        if joint_type in ("prismatic", "revolute") and joint["limits"] is not None:
+            lo, hi = joint["limits"]
+            if not lo <= position <= hi:
+                raise ValueError(f"关节 {joint['name']} 位置必须在 [{lo}, {hi}] 内")
         if joint_type == "prismatic":
             result = np.eye(4)
             result[:3, 3] = joint["axis"] * position
@@ -187,8 +199,13 @@ class Geometry:
         raise ValueError(f"不支持的关节类型: {joint_type}")
 
     def pose(self, link, joint_positions=None, reference="field_link"):
-        """Return the pose of ``link`` in ``reference`` for named joint positions."""
+        """Return link pose; all supplied joint names, values and limits are checked."""
         positions = {} if joint_positions is None else dict(joint_positions)
+        for name, value in positions.items():
+            if name not in self._joints_by_name:
+                raise ValueError(f"未知关节 {name}")
+            positions[name] = float(value)
+            self._joint_motion(self._joints_by_name[name], positions[name])
         world_link = self._world_pose(link, positions, set())
         world_reference = self._world_pose(reference, positions, set())
         return np.linalg.inv(world_reference) @ world_link
@@ -212,7 +229,7 @@ class Geometry:
         yaw_lower, yaw_upper = self.joint_limits(YAW_JOINT)
         if not math.isfinite(launcher_yaw) or not yaw_lower <= launcher_yaw <= yaw_upper:
             raise ValueError("launcher yaw 必须为 URDF 限位内的有限数值")
-        return {SLIDE_JOINT: slide, YAW_JOINT: launcher_yaw}
+        return {self.slide_joint: slide, YAW_JOINT: launcher_yaw}
 
     def link_pose(self, link, slide=0.0, launcher_yaw=0.0, reference="dart_base_link"):
         """Return a commonly used link pose with validated slide and yaw positions."""
@@ -227,6 +244,26 @@ class Geometry:
 
     def green_position(self, slide, reference="dart_base_link"):
         return self.position("green_light_link", slide, reference=reference)
+
+    def target_position(self, target="base", feature="green", slide=0.0,
+                        reference="dart_base_link"):
+        """Opponent base/outpost feature, selected by this Geometry's team."""
+        frames = {
+            ("base", "green"): "green_light_link",
+            ("base", "armor"): "armor_link",
+            ("outpost", "green"): "outpost_green_light_link",
+            ("outpost", "armor"): "outpost_armor_link",
+        }
+        if (target, feature) not in frames:
+            raise ValueError("target 必须为 base/outpost，feature 必须为 green/armor")
+        return self.position(frames[target, feature], slide, reference=reference)
+
+    def outpost_armor_surface(self, reference="dart_base_link"):
+        """Opponent outpost plane; currently assumes the base armor rectangle size."""
+        pose = self.pose("outpost_armor_link", reference=reference)
+        return Surface(pose[:3, 3].copy(), pose[:3, 0].copy(),
+                       pose[:3, 1].copy(), pose[:3, 2].copy(),
+                       float(self.armor_size[1]), float(self.armor_size[0]))
 
     def armor_position(self, slide, reference="dart_base_link"):
         """Return the center of the armor upper surface."""

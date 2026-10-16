@@ -36,12 +36,34 @@ Visualization Manager:
     Filter (whitelist): ''
     Frame Timeout: 15
     Frames:
-      All Enabled: true
+      All Enabled: false
       armor_link:
         Value: true
       base_link:
         Value: true
-      base_nominal_link:
+      blue_base_armor_link:
+        Value: true
+      blue_base_green_light_link:
+        Value: true
+      blue_base_link:
+        Value: true
+      blue_base_target_link:
+        Value: true
+      blue_dart_gate_link:
+        Value: true
+      blue_dart_station_link:
+        Value: true
+      blue_launcher_mount_link:
+        Value: true
+      blue_outpost_armor_link:
+        Value: true
+      blue_outpost_green_light_link:
+        Value: true
+      blue_outpost_link:
+        Value: true
+      blue_outpost_target_link:
+        Value: false
+      blue_rail_link:
         Value: true
       dart_base_link:
         Value: true
@@ -49,17 +71,49 @@ Visualization Manager:
         Value: true
       dart_pedestal_link:
         Value: true
+      dart_release_link:
+        Value: true
       field_link:
         Value: true
       green_light_link:
         Value: true
       launcher_frame:
         Value: true
-      rail_origin_link:
-        Value: true
       left_camera_mount_link:
         Value: true
       left_camera_optical_frame:
+        Value: true
+      outpost_armor_link:
+        Value: false
+      outpost_green_light_link:
+        Value: false
+      outpost_target_link:
+        Value: false
+      rail_origin_link:
+        Value: true
+      red_base_armor_link:
+        Value: true
+      red_base_green_light_link:
+        Value: true
+      red_base_link:
+        Value: true
+      red_base_target_link:
+        Value: true
+      red_dart_gate_link:
+        Value: true
+      red_dart_station_link:
+        Value: true
+      red_launcher_mount_link:
+        Value: true
+      red_outpost_armor_link:
+        Value: true
+      red_outpost_green_light_link:
+        Value: true
+      red_outpost_link:
+        Value: true
+      red_outpost_target_link:
+        Value: false
+      red_rail_link:
         Value: true
       right_camera_mount_link:
         Value: true
@@ -67,27 +121,12 @@ Visualization Manager:
         Value: true
       stereo_camera_center_link:
         Value: true
-    Marker Scale: 0.5
+    Marker Scale: 0.15
     Name: TF
     Show Arrows: true
     Show Axes: true
     Show Names: false
-    Tree:
-      field_link:
-        base_nominal_link:
-          base_link:
-            rail_origin_link:
-              dart_detection_module_link:
-                armor_link: {}
-                green_light_link: {}
-        dart_pedestal_link:
-          dart_base_link:
-            launcher_frame:
-              stereo_camera_center_link:
-                left_camera_mount_link:
-                  left_camera_optical_frame: {}
-                right_camera_mount_link:
-                  right_camera_optical_frame: {}
+    Tree: {}
     Update Interval: 0
     Value: true
   - Alpha: 1
@@ -108,56 +147,6 @@ Visualization Manager:
       Expand Link Details: false
       Expand Tree: false
       Link Tree Style: Links in Alphabetic Order
-      armor_link:
-        Alpha: 1
-        Show Axes: false
-        Show Trail: false
-      base_link:
-        Alpha: 1
-        Show Axes: false
-        Show Trail: false
-        Value: true
-      base_nominal_link:
-        Alpha: 1
-        Show Axes: false
-        Show Trail: false
-      dart_base_link:
-        Alpha: 1
-        Show Axes: false
-        Show Trail: false
-        Value: true
-      dart_detection_module_link:
-        Alpha: 1
-        Show Axes: false
-        Show Trail: false
-        Value: true
-      dart_pedestal_link:
-        Alpha: 1
-        Show Axes: false
-        Show Trail: false
-      field_link:
-        Alpha: 1
-        Show Axes: false
-        Show Trail: false
-        Value: true
-      green_light_link:
-        Alpha: 1
-        Show Axes: false
-        Show Trail: false
-        Value: true
-      launcher_frame:
-        Alpha: 1
-        Show Axes: false
-        Show Trail: false
-        Value: true
-      rail_origin_link:
-        Alpha: 1
-        Show Axes: false
-        Show Trail: false
-      stereo_camera_center_link:
-        Alpha: 1
-        Show Axes: false
-        Show Trail: false
     Mass Properties:
       Inertia: false
       Mass: false
@@ -178,19 +167,6 @@ Visualization Manager:
       History Policy: Keep Last
       Reliability Policy: Reliable
       Value: /sensor_fov_markers
-    Value: true
-  - Class: rviz_default_plugins/MarkerArray
-    Enabled: true
-    Name: Base ROI and Ground
-    Namespaces:
-      base_roi: true
-      ground: true
-    Topic:
-      Depth: 1
-      Durability Policy: Transient Local
-      History Policy: Keep Last
-      Reliability Policy: Reliable
-      Value: /environment_markers
     Value: true
   Enabled: true
   Global Options:
@@ -238,25 +214,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 3.4830446243286133
+      Distance: 34.0
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 7.569836616516113
-        Y: 25.577890396118164
-        Z: 0.5704009532928467
+        X: 14.0
+        Y: 7.4974299373
+        Z: 0.5
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.019797665998339653
+      Pitch: 1.05
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 4.773662567138672
+      Yaw: 3.7
     Saved: null
 Window Geometry:
   Displays:

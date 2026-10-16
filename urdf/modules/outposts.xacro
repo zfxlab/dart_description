@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="outposts">
+  <link name="red_outpost_link">
+    <visual name="cad_21_0_1_1_16_body">
+      <origin xyz="-5.61634072582251e-14 4.15917300600199e-14 -9.0726037793587e-16" rpy="1.57079632679485 0 3.59823282281013e-13" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_16_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_22_0_1_1_17_body">
+      <origin xyz="-5.61634072582251e-14 4.15917300600199e-14 -9.0726037793587e-16" rpy="1.57079632679485 0 3.59823282281013e-13" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_17_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="field_link_to_red_outpost_link" type="fixed">
+    <parent link="field_link" />
+    <child link="red_outpost_link" />
+    <origin xyz="10.909415157 3.63207974435 0.547931275995" rpy="0.0261799387845 0 1.53002610581e-13" />
+  </joint>
+  <link name="red_outpost_target_link">
+    <visual name="cad_21_0_1_1_16_target">
+      <origin xyz="-0.155570968316656 -0.00113555526565841 -1.33638059928133" rpy="1.57079632679485 0 3.59823282281013e-13" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_16_target.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_22_0_1_1_17_target">
+      <origin xyz="-0.155570968316656 -0.00113555526565841 -1.33638059928133" rpy="1.57079632679485 0 3.59823282281013e-13" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_17_target.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="red_outpost_link_to_red_outpost_target_link" type="fixed">
+    <parent link="red_outpost_link" />
+    <child link="red_outpost_target_link" />
+    <origin xyz="0.155570968317 0.00113555526567 1.33638059928" rpy="0 0 0" />
+  </joint>
+  <link name="red_outpost_green_light_link" />
+  <joint name="red_outpost_target_link_to_red_outpost_green_light_link" type="fixed">
+    <parent link="red_outpost_target_link" />
+    <child link="red_outpost_green_light_link" />
+    <origin xyz="0 0 0" rpy="4.17528914444e-19 -0.253072741551 -2.07370380233e-12" />
+  </joint>
+  <link name="red_outpost_armor_link" />
+  <joint name="red_outpost_target_link_to_red_outpost_armor_link" type="fixed">
+    <parent link="red_outpost_target_link" />
+    <child link="red_outpost_armor_link" />
+    <origin xyz="-0.0911039035567 -4.41103474236e-06 0.0794249927353" rpy="-9.78383650673e-14 -1.09083078249 7.30933314659e-14" />
+  </joint>
+  <link name="blue_outpost_link">
+    <visual name="cad_18_0_1_1_16_body">
+      <origin xyz="-4.96894192458797e-14 6.92154666914746e-15 8.67361737988404e-16" rpy="1.57079632679493 0 0" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_16_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_19_0_1_1_17_body">
+      <origin xyz="-4.96894192458797e-14 6.92154666914746e-15 8.67361737988404e-16" rpy="1.57079632679493 0 0" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_17_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="field_link_to_blue_outpost_link" type="fixed">
+    <parent link="field_link" />
+    <child link="blue_outpost_link" />
+    <origin xyz="17.090584843 11.3627801303 0.547931275987" rpy="0.0261799387853 0 -3.14159265359" />
+  </joint>
+  <link name="blue_outpost_target_link">
+    <visual name="cad_18_0_1_1_16_target">
+      <origin xyz="-0.15557096831665 -0.00113555526569308 -1.33638059928114" rpy="1.57079632679493 0 0" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_16_target.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_19_0_1_1_17_target">
+      <origin xyz="-0.15557096831665 -0.00113555526569308 -1.33638059928114" rpy="1.57079632679493 0 0" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_17_target.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="blue_outpost_link_to_blue_outpost_target_link" type="fixed">
+    <parent link="blue_outpost_link" />
+    <child link="blue_outpost_target_link" />
+    <origin xyz="0.155570968317 0.00113555526566 1.33638059928" rpy="1.73472347598e-18 0 1.25185446385e-33" />
+  </joint>
+  <link name="blue_outpost_green_light_link" />
+  <joint name="blue_outpost_target_link_to_blue_outpost_green_light_link" type="fixed">
+    <parent link="blue_outpost_target_link" />
+    <child link="blue_outpost_green_light_link" />
+    <origin xyz="-3.5527136788e-15 0 0" rpy="3.88714910661e-18 -0.253072741551 -2.07370336232e-12" />
+  </joint>
+  <link name="blue_outpost_armor_link" />
+  <joint name="blue_outpost_target_link_to_blue_outpost_armor_link" type="fixed">
+    <parent link="blue_outpost_target_link" />
+    <child link="blue_outpost_armor_link" />
+    <origin xyz="-0.0911039035557 -4.41102908511e-06 0.0794249927351" rpy="7.47550755595e-14 -1.09083078249 1.44690853836e-13" />
+  </joint>
+</robot>

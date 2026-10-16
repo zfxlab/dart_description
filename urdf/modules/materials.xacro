@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="materials">
+  <material name="aluminum">
+    <color rgba="0.65 0.68 0.72 1.0" />
+  </material>
+  <material name="camera">
+    <color rgba="0.1 0.1 0.1 1.0" />
+  </material>
+</robot>

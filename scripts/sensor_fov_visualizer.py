@@ -60,14 +60,14 @@ class SensorFovVisualizer(Node):
                 "frame_id": f"{camera}_optical_frame",
                 "width": 1440,
                 "height": 1080,
-                "fx": 9955.98186,
-                "fy": 9940.26158,
-                "cx": 704.45187,
-                "cy": 569.55719,
+                "fx": 50.0 / 0.00345,  # 50 mm lens / 3.45 um pixel pitch
+                "fy": 50.0 / 0.00345,
+                "cx": (1440 - 1) / 2,
+                "cy": (1080 - 1) / 2,
                 "near_m": 0.01,
                 "far_m": 26.0,
                 "line_color": color,
-                "surface_alpha": 0.08,
+                "surface_alpha": 0.0,
             }
             for name, value in defaults.items():
                 self.declare_parameter(f"{camera}.{name}", value)
@@ -152,6 +152,8 @@ class SensorFovVisualizer(Node):
         direction = self._direction_marker(
             camera, 1, frame, color, point(0.0, 0.0, self._value(camera, "far_m"))
         )
+        if self._value(camera, "surface_alpha") == 0.0:
+            return [line, direction]
         surface = self._marker(camera, 2, Marker.TRIANGLE_LIST, frame, color)
         surface.scale.x = surface.scale.y = surface.scale.z = 1.0
         surface.color.a = self._value(camera, "surface_alpha")

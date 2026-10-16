@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="launcher">
+  <link name="dart_base_link">
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/launcher/dart_base_link.stl" scale="1 1 1" />
+      </geometry>
+      <material name="aluminum" />
+    </visual>
+  </link>
+  <link name="launcher_frame">
+    <visual>
+      <geometry>
+        <mesh filename="package://dart_description/meshes/launcher/launcher_frame.stl" scale="1 1 1" />
+      </geometry>
+      <material name="aluminum" />
+    </visual>
+  </link>
+  <joint name="launcher_yaw_joint" type="revolute">
+    <parent link="dart_base_link" />
+    <child link="launcher_frame" />
+    <origin xyz="0.0 0.0 0.091" rpy="0.0 0.0 0.0" />
+    <axis xyz="0 0 1" />
+    <limit lower="${-pi / 9}" upper="0" effort="20" velocity="${10 * pi / 3}" />
+  </joint>
+  <link name="dart_release_link" />
+  <joint name="launcher_to_dart_release" type="fixed">
+    <parent link="launcher_frame" />
+    <child link="dart_release_link" />
+    <origin xyz="0.2 0 0.6" rpy="0 -0.5585053606381855 0" />
+  </joint>
+</robot>

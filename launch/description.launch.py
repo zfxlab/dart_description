@@ -1,123 +1,46 @@
-import math
-import os
+"""Publish the mechanical rig by default, or the optional RM2027 analysis scene."""
+from pathlib import Path
 
-import yaml
+import xacro
+from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, OpaqueFunction
-from launch.logging import get_logger
-from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitution
+from launch.conditions import IfCondition
+from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
-from launch_ros.parameter_descriptions import ParameterValue
-from launch_ros.substitutions import FindPackageShare
-
-BASE_OFFSET_NAMES = [
-    "base_offset_x",
-    "base_offset_y",
-    "base_offset_z",
-    "base_offset_roll",
-    "base_offset_pitch",
-    "base_offset_yaw",
-]
-
-
-def _read_vector(document, color, key):
-    value = document.get(key)
-    if not isinstance(value, list) or len(value) != 3:
-        raise RuntimeError(f"site {color}.{key} must be a three-element list")
-
-    result = []
-    for element in value:
-        if isinstance(element, bool) or not isinstance(element, (int, float)):
-            raise RuntimeError(f"site {color}.{key} must contain only numbers")
-        number = float(element)
-        if not math.isfinite(number):
-            raise RuntimeError(f"site {color}.{key} contains a non-finite value")
-        result.append(number)
-    return result
-
-
-def _load_site(path):
-    if not os.path.isfile(path):
-        raise RuntimeError(f"site file does not exist: {path}")
-
-    try:
-        with open(path, encoding="utf-8") as stream:
-            document = yaml.safe_load(stream)
-    except (OSError, yaml.YAMLError) as error:
-        raise RuntimeError(f"failed to read site file {path}: {error}") from error
-
-    if not isinstance(document, dict):
-        raise RuntimeError("site file root must be a map")
-    if not isinstance(document.get("is_red"), bool):
-        raise RuntimeError("site is_red must be true or false")
-
-    transforms = {}
-    for color in ("red", "blue"):
-        transform = document.get(color)
-        if not isinstance(transform, dict):
-            raise RuntimeError(f"site file must contain a {color} map")
-        transforms[color] = _read_vector(transform, color, "xyz_m") + _read_vector(
-            transform, color, "rpy_rad"
-        )
-
-    selected_color = "red" if document["is_red"] else "blue"
-    return selected_color, transforms[selected_color]
-
 
 def _launch_setup(context):
-    site_path = os.path.abspath(
-        os.path.expanduser(LaunchConfiguration("site_file").perform(context))
-    )
-    color, offsets = _load_site(site_path)
-
-    xacro_file = PathJoinSubstitution(
-        [FindPackageShare("dart_description"), "urdf", "dart_system.urdf.xacro"]
-    )
-    xacro_command = ["xacro ", xacro_file]
-    for name, value in zip(BASE_OFFSET_NAMES, offsets, strict=True):
-        xacro_command.extend([" ", name, ":=", repr(value)])
-
-    get_logger("dart_description").info(
-        f"Loaded {color} site from {site_path}: "
-        f"xyz=[{offsets[0]:.6f}, {offsets[1]:.6f}, {offsets[2]:.6f}] m, "
-        f"rpy=[{offsets[3]:.6f}, {offsets[4]:.6f}, {offsets[5]:.6f}] rad"
-    )
-
-    robot_description = ParameterValue(Command(xacro_command), value_type=str)
-    return [
-        Node(
-            package="robot_state_publisher",
-            executable="robot_state_publisher",
-            name="robot_state_publisher",
-            output="screen",
-            parameters=[
-                {
-                    "robot_description": robot_description,
-                    "use_sim_time": LaunchConfiguration("use_sim_time"),
-                }
-            ],
-        )
-    ]
+    mode = LaunchConfiguration("mode").perform(context)
+    if mode not in ("robot", "scene"):
+        raise ValueError("mode 必须为 robot/scene")
+    team = LaunchConfiguration("team").perform(context)
+    if team not in ("red", "blue"):
+        raise ValueError("team 必须为 red/blue")
+    mappings = {"team": team}
+    filename = "dart_robot.urdf.xacro" if mode == "robot" else "dart_system.urdf.xacro"
+    path = Path(get_package_share_directory("dart_description")) / "urdf" / filename
+    description = xacro.process_file(str(path), mappings=mappings).toxml()
+    nodes = [Node(package="robot_state_publisher", executable="robot_state_publisher",
+                 name="robot_state_publisher", output="screen",
+                 parameters=[{"robot_description": description,
+                              "use_sim_time": LaunchConfiguration("use_sim_time")}])]
+    if mode == "scene":
+        nodes.append(Node(package="dart_description", executable="scene_joint_state_publisher.py",
+                 name="scene_joint_state_publisher", output="screen",
+                 condition=IfCondition(LaunchConfiguration("start_scene_state_publisher")),
+                 parameters=[{"robot_description": description,
+                              "use_sim_time": LaunchConfiguration("use_sim_time")}]))
+    return nodes
 
 
 def generate_launch_description():
-    default_site_file = PathJoinSubstitution(
-        [
-            FindPackageShare("dart_description"),
-            "config",
-            "site",
-            "default.yaml",
-        ]
-    )
-
-    return LaunchDescription(
-        [
-            DeclareLaunchArgument("use_sim_time", default_value="false"),
-            DeclareLaunchArgument(
-                "site_file",
-                default_value=default_site_file,
-                description="Red/blue site YAML loaded before xacro is evaluated",
-            ),
-            OpaqueFunction(function=_launch_setup),
-        ]
-    )
+    return LaunchDescription([
+        DeclareLaunchArgument("mode", default_value="robot", choices=["robot", "scene"],
+                              description="robot: mechanical TF only; scene: full field for analysis"),
+        DeclareLaunchArgument("use_sim_time", default_value="false"),
+        DeclareLaunchArgument("start_scene_state_publisher", default_value="true",
+                              description="Publish field mechanism visualization poses; no launcher yaw"),
+        DeclareLaunchArgument("team", default_value="red", choices=["red", "blue"],
+                              description="Own team; field_link remains red-side anchored"),
+        OpaqueFunction(function=_launch_setup),
+    ])

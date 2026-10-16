@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="bases">
+  <link name="red_base_link">
+    <visual name="cad_106_0_1_1_64_body">
+      <origin xyz="-8.53483950180589e-15 4.39267220687933e-14 -7.39425881635114e-17" rpy="1.5707963267949 -2.22044604925031e-16 1.57079632679538" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_64_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_107_0_1_1_65_body">
+      <origin xyz="-8.53483950180589e-15 4.39267220687933e-14 -7.39425881635114e-17" rpy="1.5707963267949 -2.22044604925031e-16 1.57079632679538" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_65_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="field_link_to_red_base_link" type="fixed">
+    <parent link="field_link" />
+    <child link="red_base_link" />
+    <origin xyz="2.4144602811 7.49742991839 0.394327113108" rpy="5.68975611435e-13 -2.55351295664e-13 2.74225087082e-13" />
+  </joint>
+  <link name="red_rail_link">
+    <visual name="cad_106_0_1_1_64_rail">
+      <origin xyz="0.0447999999999915 4.59267498163773e-14 -1.04229999999696" rpy="1.5707963267949 -2.22044604925031e-16 1.57079632679538" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_64_rail.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_107_0_1_1_65_rail">
+      <origin xyz="0.0447999999999915 4.59267498163773e-14 -1.04229999999696" rpy="1.5707963267949 -2.22044604925031e-16 1.57079632679538" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_65_rail.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="red_base_link_to_red_rail_link" type="fixed">
+    <parent link="red_base_link" />
+    <child link="red_rail_link" />
+    <origin xyz="-0.0448 -1.7763568394e-15 1.0423" rpy="0 0 0" />
+  </joint>
+  <link name="red_base_target_link">
+    <visual name="cad_106_0_1_1_64_target">
+      <origin xyz="0.0447999999999915 4.59267498163773e-14 -1.04229999999696" rpy="1.5707963267949 -2.22044604925031e-16 1.57079632679538" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_64_target.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_107_0_1_1_65_target">
+      <origin xyz="0.0447999999999915 4.59267498163773e-14 -1.04229999999696" rpy="1.5707963267949 -2.22044604925031e-16 1.57079632679538" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_65_target.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="red_base_target_slide_joint" type="prismatic">
+    <parent link="red_rail_link" />
+    <child link="red_base_target_link" />
+    <origin xyz="0 0 2.22044604925e-16" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.28" upper="0.28" effort="1" velocity="1" />
+  </joint>
+  <link name="red_base_green_light_link" />
+  <joint name="red_base_target_link_to_red_base_green_light_link" type="fixed">
+    <parent link="red_base_target_link" />
+    <child link="red_base_green_light_link" />
+    <origin xyz="0.133162591144 4.41020371511e-06 0.001616201693" rpy="0 -0.253072741536 -1.31754818822e-12" />
+  </joint>
+  <link name="red_base_armor_link" />
+  <joint name="red_base_target_link_to_red_base_armor_link" type="fixed">
+    <parent link="red_base_target_link" />
+    <child link="red_base_armor_link" />
+    <origin xyz="0.0420586875844 -8.32082847069e-10 0.0810411944293" rpy="2.17700366292e-25 -1.09083078251 -4.38886965202e-12" />
+  </joint>
+  <link name="blue_base_link">
+    <visual name="cad_109_0_1_1_64_body">
+      <origin xyz="3.81916720471054e-14 1.58835618269126e-16 -1.20346441145891e-15" rpy="1.5707963267949 0 1.5707963267949" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_64_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_110_0_1_1_65_body">
+      <origin xyz="3.81916720471054e-14 1.58835618269126e-16 -1.20346441145891e-15" rpy="1.5707963267949 0 1.5707963267949" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_65_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="field_link_to_blue_base_link" type="fixed">
+    <parent link="field_link" />
+    <child link="blue_base_link" />
+    <origin xyz="25.5871447591 7.49742995358 0.394327113104" rpy="9.86766224287e-13 1.85185200507e-13 -3.14159265359" />
+  </joint>
+  <link name="blue_rail_link">
+    <visual name="cad_109_0_1_1_64_rail">
+      <origin xyz="0.0448000000000382 1.58835618269126e-16 -1.04229999999665" rpy="1.5707963267949 0 1.5707963267949" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_64_rail.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_110_0_1_1_65_rail">
+      <origin xyz="0.0448000000000382 1.58835618269126e-16 -1.04229999999665" rpy="1.5707963267949 0 1.5707963267949" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_65_rail.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="blue_base_link_to_blue_rail_link" type="fixed">
+    <parent link="blue_base_link" />
+    <child link="blue_rail_link" />
+    <origin xyz="-0.0448 0 1.0423" rpy="0 0 0" />
+  </joint>
+  <link name="blue_base_target_link">
+    <visual name="cad_109_0_1_1_64_target">
+      <origin xyz="0.0448000000000382 1.58835618269126e-16 -1.04229999999665" rpy="1.5707963267949 0 1.5707963267949" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_64_target.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_110_0_1_1_65_target">
+      <origin xyz="0.0448000000000382 1.58835618269126e-16 -1.04229999999665" rpy="1.5707963267949 0 1.5707963267949" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_65_target.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="blue_base_target_slide_joint" type="prismatic">
+    <parent link="blue_rail_link" />
+    <child link="blue_base_target_link" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.28" upper="0.28" effort="1" velocity="1" />
+  </joint>
+  <link name="blue_base_green_light_link" />
+  <joint name="blue_base_target_link_to_blue_base_green_light_link" type="fixed">
+    <parent link="blue_base_target_link" />
+    <child link="blue_base_green_light_link" />
+    <origin xyz="0.133162591144 4.41020371511e-06 0.001616201693" rpy="0 -0.253072741536 -1.31754818822e-12" />
+  </joint>
+  <link name="blue_base_armor_link" />
+  <joint name="blue_base_target_link_to_blue_base_armor_link" type="fixed">
+    <parent link="blue_base_target_link" />
+    <child link="blue_base_armor_link" />
+    <origin xyz="0.0420586875444 -8.26335444515e-10 0.0810411944293" rpy="-3.01587007514e-17 -1.09083078251 -4.12461331518e-12" />
+  </joint>
+</robot>

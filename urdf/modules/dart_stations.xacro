@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="dart_stations">
+  <link name="red_dart_station_link">
+    <visual name="cad_37_0_1_1_29_body">
+      <origin xyz="13.6472029521902 -5.08704344269687 1.53330158949633" rpy="-0.0261799387734885 2.22044604925031e-16 -3.14159265358788" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_29_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_39_0_1_1_31_body">
+      <origin xyz="4.45365966328382e-13 -9.2073917934421e-13 2.84189338728424e-13" rpy="-1.5707963267949 3.37507799486048e-14 1.5707963267968" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_31_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_40_0_1_1_32_body">
+      <origin xyz="4.45365966328382e-13 -9.2073917934421e-13 2.84189338728424e-13" rpy="-1.5707963267949 3.37507799486048e-14 1.5707963267968" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_32_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_41_0_1_1_33_body">
+      <origin xyz="-0.0286486022495577 1.02406381985443e-11 1.57258496959778" rpy="1.30899693899976 5.51558798633778e-13 1.57079632679873" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_33_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_43_0_1_1_35_body">
+      <origin xyz="-0.473346969919556 8.79575232093366e-12 1.3201160571677" rpy="-0.261799387801821 -1.01163522003844e-12 -1.57079632679273" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_35_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_44_0_1_1_36_body">
+      <origin xyz="-0.473346969919556 8.79575232093366e-12 1.3201160571677" rpy="-0.261799387801821 -1.01163522003844e-12 -1.57079632679273" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_36_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="field_link_to_red_dart_station_link" type="fixed">
+    <parent link="field_link" />
+    <child link="red_dart_station_link" />
+    <origin xyz="0.845004254805 14.1669366973 0.171731350392" rpy="-0.0261799387726 -2.71687117248e-11 -1.03752944777e-09" />
+  </joint>
+  <link name="red_dart_gate_link">
+    <visual name="cad_39_0_1_1_31_gate">
+      <origin xyz="4.45365966328382e-13 -9.2073917934421e-13 2.84189338728424e-13" rpy="-1.5707963267949 3.37507799486048e-14 1.5707963267968" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_31_gate.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_40_0_1_1_32_gate">
+      <origin xyz="4.45365966328382e-13 -9.2073917934421e-13 2.84189338728424e-13" rpy="-1.5707963267949 3.37507799486048e-14 1.5707963267968" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_32_gate.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="red_dart_gate_joint" type="prismatic">
+    <parent link="red_dart_station_link" />
+    <child link="red_dart_gate_link" />
+    <origin xyz="0.296800739971 -0 -1.1076754413" rpy="0 0 0" />
+    <axis xyz="-0.258819045103 0 0.965925826289" />
+    <limit lower="0" upper="1.2" effort="1" velocity="1" />
+  </joint>
+  <link name="red_launcher_mount_link" />
+  <joint name="red_dart_station_link_to_red_launcher_mount_link" type="fixed">
+    <parent link="red_dart_station_link" />
+    <child link="red_launcher_mount_link" />
+    <origin xyz="-0.1385 0 0.0549999999998" rpy="-8.49652918453e-13 2.22044604925e-16 -1.51461293802e-28" />
+  </joint>
+  <link name="blue_dart_station_link">
+    <visual name="cad_55_0_1_1_29_body">
+      <origin xyz="13.6472029521799 -5.08704344272117 1.53330158950024" rpy="-0.0261799387730679 3.5171865420125e-13 3.14159265358978" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_29_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_57_0_1_1_31_body">
+      <origin xyz="4.36095604072761e-13 4.37150315946155e-15 -2.32647234810202e-13" rpy="-1.5707963267949 -3.5527136788005e-14 1.5707963267949" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_31_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_58_0_1_1_32_body">
+      <origin xyz="4.36095604072761e-13 4.37150315946155e-15 -2.32647234810202e-13" rpy="-1.5707963267949 -3.5527136788005e-14 1.5707963267949" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_32_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_59_0_1_1_33_body">
+      <origin xyz="-0.0286486022501166 1.18733564646867e-11 1.57258496959749" rpy="1.3089969389985 -3.48610029732299e-14 1.5707963267949" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_33_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_61_0_1_1_35_body">
+      <origin xyz="-0.473346969920029 1.21577019285279e-11 1.32011605716774" rpy="-0.261799387801471 -1.05182529352987e-12 -1.5707963267946" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_35_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_62_0_1_1_36_body">
+      <origin xyz="-0.473346969920029 1.21577019285279e-11 1.32011605716774" rpy="-0.261799387801471 -1.05182529352987e-12 -1.5707963267946" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_36_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="field_link_to_blue_dart_station_link" type="fixed">
+    <parent link="field_link" />
+    <child link="blue_dart_station_link" />
+    <origin xyz="27.154995746 0.827923177293 0.171731350392" rpy="-0.026179938772 -2.69921862639e-11 3.14159265255" />
+  </joint>
+  <link name="blue_dart_gate_link">
+    <visual name="cad_57_0_1_1_31_gate">
+      <origin xyz="4.36095604072761e-13 4.37150315946155e-15 -2.32647234810202e-13" rpy="-1.5707963267949 -3.5527136788005e-14 1.5707963267949" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_31_gate.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_58_0_1_1_32_gate">
+      <origin xyz="4.36095604072761e-13 4.37150315946155e-15 -2.32647234810202e-13" rpy="-1.5707963267949 -3.5527136788005e-14 1.5707963267949" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_32_gate.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+  </link>
+  <joint name="blue_dart_gate_joint" type="prismatic">
+    <parent link="blue_dart_station_link" />
+    <child link="blue_dart_gate_link" />
+    <origin xyz="0.296800739971 -0 -1.1076754413" rpy="0 0 0" />
+    <axis xyz="-0.258819045103 0 0.965925826289" />
+    <limit lower="0" upper="1.2" effort="1" velocity="1" />
+  </joint>
+  <link name="blue_launcher_mount_link" />
+  <joint name="blue_dart_station_link_to_blue_launcher_mount_link" type="fixed">
+    <parent link="blue_dart_station_link" />
+    <child link="blue_launcher_mount_link" />
+    <origin xyz="-0.1385 0 0.0549999999998" rpy="-8.49652918453e-13 2.22044604925e-16 -1.51461293802e-28" />
+  </joint>
+</robot>

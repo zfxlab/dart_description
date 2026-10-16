@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="dart_robot">
+  <xacro:include filename="modules/materials.xacro" />
+  <xacro:include filename="modules/launcher.xacro" />
+  <xacro:include filename="modules/stereo_camera.xacro" />
+</robot>

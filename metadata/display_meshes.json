@@ -1,0 +1,177 @@
+{
+  "assets": [
+    {
+      "file": "field_static.dae",
+      "before_triangles": 2417807,
+      "after_triangles": 1461244,
+      "before_bytes": 129214670,
+      "after_bytes": 131677426,
+      "material_colors": 26
+    },
+    {
+      "file": "outpost_017_body.dae",
+      "before_triangles": 316028,
+      "after_triangles": 46779,
+      "before_bytes": 28971636,
+      "after_bytes": 5594117,
+      "material_colors": 17
+    },
+    {
+      "file": "outpost_017_target.dae",
+      "before_triangles": 89447,
+      "after_triangles": 38849,
+      "before_bytes": 7365273,
+      "after_bytes": 3404894,
+      "material_colors": 17
+    },
+    {
+      "file": "outpost_020_body.dae",
+      "before_triangles": 316028,
+      "after_triangles": 46779,
+      "before_bytes": 28971642,
+      "after_bytes": 5620794,
+      "material_colors": 17
+    },
+    {
+      "file": "outpost_020_target.dae",
+      "before_triangles": 89447,
+      "after_triangles": 38849,
+      "before_bytes": 7365279,
+      "after_bytes": 3437624,
+      "material_colors": 17
+    },
+    {
+      "file": "dart_station_red_fixed.dae",
+      "before_triangles": 566235,
+      "after_triangles": 559187,
+      "before_bytes": 45303137,
+      "after_bytes": 48706047,
+      "material_colors": 8
+    },
+    {
+      "file": "dart_station_red_gate.dae",
+      "before_triangles": 127790,
+      "after_triangles": 87436,
+      "before_bytes": 10636151,
+      "after_bytes": 7301664,
+      "material_colors": 4
+    },
+    {
+      "file": "dart_station_blue_fixed.dae",
+      "before_triangles": 566235,
+      "after_triangles": 559187,
+      "before_bytes": 45303138,
+      "after_bytes": 48961787,
+      "material_colors": 8
+    },
+    {
+      "file": "dart_station_blue_gate.dae",
+      "before_triangles": 127790,
+      "after_triangles": 87436,
+      "before_bytes": 10636153,
+      "after_bytes": 7259302,
+      "material_colors": 4
+    },
+    {
+      "file": "base_red_body.dae",
+      "before_triangles": 307654,
+      "after_triangles": 45688,
+      "before_bytes": 26409956,
+      "after_bytes": 5361365,
+      "material_colors": 9
+    },
+    {
+      "file": "base_red_rail.dae",
+      "before_triangles": 113580,
+      "after_triangles": 109700,
+      "before_bytes": 9509202,
+      "after_bytes": 9158943,
+      "material_colors": 9
+    },
+    {
+      "file": "base_red_target.dae",
+      "before_triangles": 66017,
+      "after_triangles": 25873,
+      "before_bytes": 5535031,
+      "after_bytes": 2067927,
+      "material_colors": 9
+    },
+    {
+      "file": "base_blue_body.dae",
+      "before_triangles": 307654,
+      "after_triangles": 45688,
+      "before_bytes": 26409956,
+      "after_bytes": 5337770,
+      "material_colors": 9
+    },
+    {
+      "file": "base_blue_rail.dae",
+      "before_triangles": 113580,
+      "after_triangles": 109700,
+      "before_bytes": 9509202,
+      "after_bytes": 9083176,
+      "material_colors": 9
+    },
+    {
+      "file": "base_blue_target.dae",
+      "before_triangles": 66017,
+      "after_triangles": 25873,
+      "before_bytes": 5535031,
+      "after_bytes": 2043780,
+      "material_colors": 9
+    }
+  ],
+  "maximum_bounds_error_m": 0.00121755238092075,
+  "green_vertices_bidirectional_nearest_error_m": 0,
+  "assimp_imports_passed": 15,
+  "method": "weld 1um; 1deg planar dissolve preserving material boundaries; weighted collapse protects material boundaries, sharp edges and green surfaces; 2mm bounds gate with planar-only fallback; bake original internal instance matrices",
+  "source_master": "RM_Assets/derived/rmuc2027_v1/split (unmodified)",
+  "shading": {
+    "sharp_angle_degrees": 20,
+    "triangle_positions_exactly_preserved": true,
+    "unit_normals_checked": true,
+    "ambient_factor": 1.0,
+    "specular_rgb": [
+      0,
+      0,
+      0
+    ],
+    "cad_palette_unchanged": true,
+    "display_color_conversion": "linear CAD RGB to sRGB for default RViz OGRE display; alpha unchanged",
+    "display_face_color_overrides": [
+      {
+        "mesh_key": "0:1:1:16_body",
+        "source_face": 4508,
+        "triangles": 14,
+        "source_area_m2": 0.010673205597360694,
+        "display_area_m2": 0.010663771120317717
+      },
+      {
+        "mesh_key": "0:1:1:16_body",
+        "source_face": 4814,
+        "triangles": 14,
+        "source_area_m2": 0.010673205597348995,
+        "display_area_m2": 0.010663974975629554
+      },
+      {
+        "mesh_key": "0:1:1:16_body",
+        "source_face": 5706,
+        "triangles": 14,
+        "source_area_m2": 0.010673205597388599,
+        "display_area_m2": 0.010664065334137338
+      }
+    ]
+  },
+  "reuse": {
+    "unique_files": 48,
+    "visual_instances": 97,
+    "unique_triangles": 1477397,
+    "scene_triangles": 3288268,
+    "shared_bytes": 126378844,
+    "previous_bytes": 295016616,
+    "max_position_rounding_error_m": 9.988079607836653e-07,
+    "max_normal_rounding_error": 5.473083564133674e-08,
+    "material_triangle_indices_identical": true,
+    "assimp_imports_passed": 48
+  }
+}

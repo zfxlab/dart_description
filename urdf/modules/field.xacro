@@ -1,0 +1,371 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="field">
+  <link name="field_link">
+    <visual name="cad_1_0_1_1_2_body">
+      <origin xyz="14.0000072066 9.12177361382 1.8376707888" rpy="0 0 -3.14159265358959" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_2_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_4_0_1_1_5_body">
+      <origin xyz="14.0000072066 9.12177361382 1.8376707888" rpy="0 0 -3.14159265358959" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_5_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_6_0_1_1_7_body">
+      <origin xyz="13.9910548438031 7.557047719199 2.7033271123049" rpy="0 0 -0.424515183551763" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_7_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_7_0_1_1_8_body">
+      <origin xyz="13.9910548438031 7.557047719199 2.7033271123049" rpy="0 0 -0.424515183551763" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_8_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_8_0_1_1_9_body">
+      <origin xyz="13.5743217205116 6.65597279395391 0.387327112305" rpy="-1.5707963267949 0 -2.3561944894617" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_9_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_9_0_1_1_9_body">
+      <origin xyz="14.4299209201691 8.33464444000319 0.387327112305" rpy="-1.5707963267949 1.51212375953946e-13 0.78539816412951" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_9_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_10_0_1_1_10_body">
+      <origin xyz="14.005033173011 5.878126652784 1.9376707888295" rpy="-9.14153800742662e-11 2.34350316929977e-11 -5.04108536121398e-11" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_10_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_11_0_1_1_10_body">
+      <origin xyz="13.994966819158 9.11673308720647 1.93767078773345" rpy="9.14153197584255e-11 -2.34350316929977e-11 3.14159265358391" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_10_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_12_0_1_1_11_body">
+      <origin xyz="14.0000072066076 9.12177361382416 1.83479314530737" rpy="2.04281036531029e-14 0 -3.14159265358957" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_11_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_13_0_1_1_12_body">
+      <origin xyz="14.0000072066266 9.12184609910412 1.83756124721153" rpy="2.1085355683681e-12 0 -3.14159265358957" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_12_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_14_0_1_1_13_body">
+      <origin xyz="14.0000072066006 9.12170112852866 1.83756124723521" rpy="-8.96838159292201e-13 0 -3.14159265358943" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_13_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_15_0_1_1_14_body">
+      <origin xyz="14.0000071479192 9.1250262721628 1.83764882098424" rpy="8.62421245528822e-13 -4.36937557912742e-07 3.14157596761797" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_14_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_16_0_1_1_14_body">
+      <origin xyz="13.9999928520705 5.86983360249 1.83764882098137" rpy="-1.8350316586895e-14 -4.36937559022965e-07 -1.66859719568277e-05" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_14_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_23_0_1_1_18_body">
+      <origin xyz="14.0000072064143 9.11831922058765 1.83764980560427" rpy="-4.61852778244065e-14 -4.40714131855202e-12 -3.14159265352388" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_18_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_24_0_1_1_18_body">
+      <origin xyz="13.9999927935058 5.876540654116 1.83764980560233" rpy="-9.50906022064442e-14 -3.65241170641184e-12 4.05373645868302e-11" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_18_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_25_0_1_1_19_body">
+      <origin xyz="14.0000072053288 9.12508303748312 1.83764980564847" rpy="-1.35358391162299e-12 4.60165239246635e-12 -3.14159265351491" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_19_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_26_0_1_1_19_body">
+      <origin xyz="13.9999927944009 5.869776837352 1.8376498056426" rpy="-2.73384093119698e-12 3.65796282153497e-12 5.89860141442802e-11" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_19_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_29_0_1_1_22_body">
+      <origin xyz="14.0000072066 9.12177361382 1.8376707888" rpy="0 0 -3.14159265358959" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_22_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_31_0_1_1_24_body">
+      <origin xyz="14.0000072066 9.12177361382 1.8376707888" rpy="0 0 -3.14159265358959" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_24_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_32_0_1_1_25_body">
+      <origin xyz="14.0000072077938 9.7215680088053 1.82196461981529" rpy="0 0 -3.14159265358959" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_25_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_33_0_1_1_26_body">
+      <origin xyz="14.0000072066006 9.1217736135393 1.83767078881082" rpy="-1.59205981731247e-13 -1.53210777398272e-14 -3.14159265358899" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_26_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_34_0_1_1_27_body">
+      <origin xyz="-7.42610400858914 4.96508291640157 1.85817011970115" rpy="1.74027459109836e-13 -2.77333711551364e-13 7.99522888745014e-13" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_27_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_35_0_1_1_27_body">
+      <origin xyz="-4.9746040085792 5.21799621992408 1.8515473517637" rpy="2.126944453895e-12 0 2.06823107110215e-13" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_27_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_47_0_1_1_39_body">
+      <origin xyz="14.0000072066 9.12177361382 1.8376707888" rpy="0 0 -3.14159265358959" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_39_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_49_0_1_1_41_body">
+      <origin xyz="14.0000072066 9.12177361382 1.8376707888" rpy="0 0 -3.14159265358959" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_41_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_50_0_1_1_42_body">
+      <origin xyz="14.0000072077922 8.5219792188347 1.82196461981529" rpy="0 0 -3.14159265358959" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_42_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_51_0_1_1_26_body">
+      <origin xyz="13.999992792479 5.873086250741 1.83767078644809" rpy="3.1775690698845e-10 -1.77218240082766e-10 7.0075412136841e-10" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_26_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_52_0_1_1_27_body">
+      <origin xyz="35.4261040047498 10.0297769628687 1.85817012246324" rpy="-3.17838866337183e-10 1.77189818373336e-10 -3.14159265288904" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_27_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_53_0_1_1_27_body">
+      <origin xyz="32.9746040085699 9.77686365471632 1.85154735176366" rpy="2.12763140439165e-12 0 -3.14159265358959" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_27_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_65_0_1_1_46_body">
+      <origin xyz="14.0000072066 9.12177361382 1.8376707888" rpy="0 0 -3.14159265358959" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_46_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_66_0_1_1_47_body">
+      <origin xyz="14.0000072066 9.12177361382 1.8376707888" rpy="0 0 -3.14159265358959" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_47_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_67_0_1_1_27_body">
+      <origin xyz="14.0020072066045 9.12385869591111 1.83444781512906" rpy="2.12563300294732e-12 1.09245945623115e-13 3.14159265358588" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_27_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_68_0_1_1_27_body">
+      <origin xyz="-1.26007035998989 8.56861883418974 1.8356267317251" rpy="0.0378457237852368 0.0234376529410698 -1.10890620514997" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_27_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_71_0_1_1_50_body">
+      <origin xyz="14.0000072066 9.12177361382 1.8376707888" rpy="0 0 -3.14159265358959" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_50_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_72_0_1_1_51_body">
+      <origin xyz="14.0000072066 9.12177361382 1.8376707888" rpy="0 0 -3.14159265358959" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_51_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_73_0_1_1_27_body">
+      <origin xyz="13.9979927933916 5.871001178677 1.83444781514077" rpy="-1.439820485061e-14 -2.8421709430404e-14 2.06823107110215e-13" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_27_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_74_0_1_1_27_body">
+      <origin xyz="29.2600703600006 6.42624104044816 1.83562673171471" rpy="0.0378457237890211 0.0234376529391933 2.03268644844206" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_27_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_77_0_1_1_54_body">
+      <origin xyz="13.9999927933907 5.87308626082 1.83767078880118" rpy="0 0 2.06823107110214e-13" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_54_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_78_0_1_1_55_body">
+      <origin xyz="13.9999927933907 5.87308626082 1.83767078880118" rpy="0 0 2.06823107110214e-13" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_55_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_79_0_1_1_56_body">
+      <origin xyz="0.798540000611689 0.942167761147269 0.802573994243" rpy="1.5707963267949 0.0261799387800101 -1.57079632679469" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_56_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_80_0_1_1_56_body">
+      <origin xyz="0.798540000611675 1.00983667890427 0.765832769601" rpy="1.5707963267949 -1.02101761241659 -1.57079632679469" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_56_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_81_0_1_1_56_body">
+      <origin xyz="0.798540000611675 1.01185230387627 0.688859155456" rpy="-1.5707963267949 -1.07337748997618 1.5707963267951" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_56_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_82_0_1_1_56_body">
+      <origin xyz="0.798540000611689 0.94619901109127 0.648626765953" rpy="-1.5707963267949 -0.0261799387800099 1.5707963267951" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_56_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_83_0_1_1_56_body">
+      <origin xyz="0.798540000611704 0.87853009333427 0.685367990596" rpy="-1.5707963267949 1.02101761241659 1.5707963267951" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_56_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_84_0_1_1_56_body">
+      <origin xyz="0.798540000611704 0.87651446836327 0.762341604741" rpy="1.5707963267949 1.07337748997619 -1.57079632679469" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_56_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_87_0_1_1_54_body">
+      <origin xyz="14.0000072066 9.12177361382 1.8376707888" rpy="0 0 -3.14159265358959" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_54_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_88_0_1_1_55_body">
+      <origin xyz="14.0000072066 9.12177361382 1.8376707888" rpy="0 0 -3.14159265358959" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_55_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_89_0_1_1_56_body">
+      <origin xyz="27.201459999379 14.0526921134857 0.802573994244" rpy="1.5707963267949 -0.0261799387800099 -1.57079632679469" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_56_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_90_0_1_1_56_body">
+      <origin xyz="27.201459999379 13.9850231957317 0.765832769596" rpy="1.5707963267949 1.02101761241659 -1.57079632679469" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_56_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_91_0_1_1_56_body">
+      <origin xyz="27.201459999379 13.9830075707677 0.688859155451" rpy="-1.5707963267949 1.07337748997619 1.5707963267951" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_56_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_92_0_1_1_56_body">
+      <origin xyz="27.201459999379 14.0486608635557 0.648626765954" rpy="-1.5707963267949 0.0261799387800101 1.5707963267951" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_56_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_93_0_1_1_56_body">
+      <origin xyz="27.201459999379 14.1163297813087 0.685367990602" rpy="-1.5707963267949 -1.02101761241659 1.5707963267951" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_56_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_94_0_1_1_56_body">
+      <origin xyz="27.201459999379 14.1183454062737 0.762341604748" rpy="1.5707963267949 -1.07337748997618 -1.57079632679469" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_56_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_96_0_1_1_59_body">
+      <origin xyz="13.964080312896 9.12178982441158 1.83767192819775" rpy="-3.58872800365617e-07 0 -3.14159265358959" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_59_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_98_0_1_1_59_body">
+      <origin xyz="14.0359196870953 5.87307005023001 1.83767192819776" rpy="-3.58872806501685e-07 0 2.0682310713134e-13" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_59_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_99_0_1_1_61_body">
+      <origin xyz="14.0000072066 9.12177361382 1.8376707888" rpy="0 0 -3.14159265358959" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_61_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_100_0_1_1_61_body">
+      <origin xyz="14.0002633998029 5.87308626349 1.83767078879961" rpy="2.629129552956e-13 0 2.06823107110214e-13" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_61_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_101_0_1_1_62_body">
+      <origin xyz="14.0000072066 9.13676847369514 1.83727813457531" rpy="5.55111512312578e-14 0 -3.14159265358959" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_62_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_102_0_1_1_62_body">
+      <origin xyz="13.9999927933907 5.858091400945 1.83727813457527" rpy="4.943614961839e-14 0 2.06823107110214e-13" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_62_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_103_0_1_1_27_body">
+      <origin xyz="-4.99084210127054 11.7436995647061 1.90305076265392" rpy="0.0261799387799093 0.0261799387799704 -1.57079632679469" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_27_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual name="cad_104_0_1_1_27_body">
+      <origin xyz="32.9908421012612 3.25133603718193 1.90976151551829" rpy="0.0261799387799093 0.0261799387799806 1.5707963267951" />
+      <geometry>
+        <mesh filename="package://dart_description/meshes/shared/part_0_1_1_27_body.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+  </link>
+</robot>

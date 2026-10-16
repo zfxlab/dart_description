@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="targets">
+  <xacro:if value="${team == 'red'}">
+    <link name="base_link" />
+    <joint name="alias_base_link" type="fixed">
+      <parent link="blue_base_link" />
+      <child link="base_link" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+    <link name="rail_origin_link" />
+    <joint name="alias_rail_origin_link" type="fixed">
+      <parent link="blue_rail_link" />
+      <child link="rail_origin_link" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+    <link name="dart_detection_module_link" />
+    <joint name="alias_dart_detection_module_link" type="fixed">
+      <parent link="blue_base_target_link" />
+      <child link="dart_detection_module_link" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+    <link name="green_light_link" />
+    <joint name="alias_green_light_link" type="fixed">
+      <parent link="blue_base_green_light_link" />
+      <child link="green_light_link" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+    <link name="armor_link">
+      <collision>
+        <origin xyz="-0.005 0 0" rpy="0 ${pi / 2} 0" />
+        <geometry>
+          <box size="0.1 0.1 0.01" />
+        </geometry>
+      </collision>
+    </link>
+    <joint name="alias_armor_link" type="fixed">
+      <parent link="blue_base_armor_link" />
+      <child link="armor_link" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+    <link name="outpost_target_link" />
+    <joint name="alias_outpost_target_link" type="fixed">
+      <parent link="blue_outpost_target_link" />
+      <child link="outpost_target_link" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+    <link name="outpost_green_light_link" />
+    <joint name="alias_outpost_green_light_link" type="fixed">
+      <parent link="blue_outpost_green_light_link" />
+      <child link="outpost_green_light_link" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+    <link name="outpost_armor_link" />
+    <joint name="alias_outpost_armor_link" type="fixed">
+      <parent link="blue_outpost_armor_link" />
+      <child link="outpost_armor_link" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+    <link name="dart_pedestal_link" />
+    <joint name="alias_dart_pedestal_link" type="fixed">
+      <parent link="red_launcher_mount_link" />
+      <child link="dart_pedestal_link" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+  </xacro:if>
+  <xacro:if value="${team == 'blue'}">
+    <link name="base_link" />
+    <joint name="alias_base_link" type="fixed">
+      <parent link="red_base_link" />
+      <child link="base_link" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+    <link name="rail_origin_link" />
+    <joint name="alias_rail_origin_link" type="fixed">
+      <parent link="red_rail_link" />
+      <child link="rail_origin_link" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+    <link name="dart_detection_module_link" />
+    <joint name="alias_dart_detection_module_link" type="fixed">
+      <parent link="red_base_target_link" />
+      <child link="dart_detection_module_link" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+    <link name="green_light_link" />
+    <joint name="alias_green_light_link" type="fixed">
+      <parent link="red_base_green_light_link" />
+      <child link="green_light_link" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+    <link name="armor_link">
+      <collision>
+        <origin xyz="-0.005 0 0" rpy="0 ${pi / 2} 0" />
+        <geometry>
+          <box size="0.1 0.1 0.01" />
+        </geometry>
+      </collision>
+    </link>
+    <joint name="alias_armor_link" type="fixed">
+      <parent link="red_base_armor_link" />
+      <child link="armor_link" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+    <link name="outpost_target_link" />
+    <joint name="alias_outpost_target_link" type="fixed">
+      <parent link="red_outpost_target_link" />
+      <child link="outpost_target_link" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+    <link name="outpost_green_light_link" />
+    <joint name="alias_outpost_green_light_link" type="fixed">
+      <parent link="red_outpost_green_light_link" />
+      <child link="outpost_green_light_link" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+    <link name="outpost_armor_link" />
+    <joint name="alias_outpost_armor_link" type="fixed">
+      <parent link="red_outpost_armor_link" />
+      <child link="outpost_armor_link" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+    <link name="dart_pedestal_link" />
+    <joint name="alias_dart_pedestal_link" type="fixed">
+      <parent link="blue_launcher_mount_link" />
+      <child link="dart_pedestal_link" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+  </xacro:if>
+  <joint name="dart_pedestal_to_base" type="fixed">
+    <parent link="dart_pedestal_link" />
+    <child link="dart_base_link" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+</robot>

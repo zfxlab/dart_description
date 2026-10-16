@@ -29,13 +29,20 @@ install(
 )
 
 install(
-  PROGRAMS scripts/sensor_fov_visualizer.py scripts/environment_visualizer.py
+  PROGRAMS scripts/sensor_fov_visualizer.py
+           scripts/scene_joint_state_publisher.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
 ament_python_install_package(
   target_geometry
-  PACKAGE_DIR scripts/target_geometry
+  PACKAGE_DIR target_geometry
 )
+
+if(BUILD_TESTING)
+  find_package(ament_cmake_pytest REQUIRED)
+  ament_add_pytest_test(rm2027_geometry test/test_rm2027_geometry.py)
+  ament_add_pytest_test(target_geometry_api test/test_target_geometry.py)
+endif()
 
 ament_package()

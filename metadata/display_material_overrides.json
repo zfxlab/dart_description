@@ -1,0 +1,12 @@
+{
+  "color_space": "linear RGB",
+  "rules": [
+    {
+      "mesh_key": "0:1:1:16_body",
+      "source_faces": [4508, 4814, 5706],
+      "match_rgba": [0.65, 0.65, 0.65, 1.0],
+      "replacement_rgba": [0.0331048, 0.0331048, 0.0331048, 1.0],
+      "reason": "User confirmed black exterior center surfaces on all three middle outpost armor plates; shared by both teams."
+    }
+  ]
+}
