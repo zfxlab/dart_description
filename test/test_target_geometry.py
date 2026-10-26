@@ -11,6 +11,18 @@ sys.path.insert(0, str(PACKAGE))
 from target_geometry import Geometry
 
 
+@pytest.mark.parametrize('yaw', [0.0, -0.2])
+def test_ballistic_reference_uses_release_origin_and_launcher_axes(yaw):
+    g = Geometry()
+    q = {'launcher_yaw_joint': yaw}
+    ballistic = g.pose('ballistic_reference_frame', q)
+    release = g.pose('dart_release_link', q)
+    launcher = g.pose('launcher_frame', q)
+    np.testing.assert_allclose(ballistic[:3, 3], release[:3, 3], atol=1e-12)
+    np.testing.assert_allclose(ballistic[:3, :3], launcher[:3, :3], atol=1e-12)
+    assert not np.allclose(ballistic[:3, :3], release[:3, :3])
+
+
 @pytest.mark.parametrize('team', ['red', 'blue'])
 def test_public_queries_across_slide_and_yaw(team):
     g = Geometry(team=team)

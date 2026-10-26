@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<robot name="launcher">
+<robot name="launcher" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:property name="dart_release_xyz" value="0.2 0 0.6" />
   <link name="dart_base_link">
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
@@ -28,6 +29,13 @@
   <joint name="launcher_to_dart_release" type="fixed">
     <parent link="launcher_frame" />
     <child link="dart_release_link" />
-    <origin xyz="0.2 0 0.6" rpy="0 -0.5585053606381855 0" />
+    <origin xyz="${dart_release_xyz}" rpy="0 -0.5585053606381855 0" />
+  </joint>
+  <!-- 离轨点原点，保留发射架水平轴；底座倾斜时需另行提供重力对齐参考系。 -->
+  <link name="ballistic_reference_frame" />
+  <joint name="launcher_to_ballistic_reference" type="fixed">
+    <parent link="launcher_frame" />
+    <child link="ballistic_reference_frame" />
+    <origin xyz="${dart_release_xyz}" rpy="0 0 0" />
   </joint>
 </robot>

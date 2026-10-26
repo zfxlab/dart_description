@@ -191,7 +191,8 @@ def test_runtime_rig_is_scene_independent_and_matches_scene(yaw):
     links = {e.get('name') for e in root.findall('link')}
     children = {e.find('child').get('link') for e in root.findall('joint')}
     assert links-children == {'dart_base_link'}
-    assert len(links) == 8
+    assert len(links) == 9
+    assert 'ballistic_reference_frame' in links
     assert {e.get('name') for e in root.findall('joint') if e.get('type') != 'fixed'} == {'launcher_yaw_joint'}
     assert all('/shared/' not in e.get('filename') for e in root.iter('mesh'))
     for team in ['red', 'blue']:
